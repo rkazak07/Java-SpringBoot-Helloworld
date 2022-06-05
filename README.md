@@ -1,30 +1,30 @@
-# projects
+# project
 
-Springboot Hello world projesi için ;
+For the Springboot Hello world project;
 
-ihtiyacımız olan araçlar
+The tools we need are:
 Docker
 Kubernetes
 Maven
 
-Öncelikle hello world metnini içeren app.java 'ya ve hello controller'a ihtiyacımız var hello controller'ı hello world metnini döndürmek için kullanıyoruz.. 
-Gerekli paketleri yükleyebilmek için "pom.xml" dosyamı maven ile build alıyorum. Gerekli maven sürümlerini Dockerfile dosyamda vardır. Direk dockerfile dosyasını build almanız yeterlidir.
+First we need app.java which contains the hello world text and we use the hello controller to return the hello world text.
+I create my "pom.xml" file with maven so that I can install the required packages. I have the required maven versions in my dockerfile. Just build the Dockerfile directly.
 
-Kubernetes'e manuel Deploy Etmek için ;
+To deploy Kubernetes manually;
 
-Öncelikle imajları pushlayıp kubernetes'e çekebilmek için private veya public registry'ê ihtiyacımız vardır.
+First of all we need a private or public registry to send images to kubernetes.
 
-Values.yaml Dosyasında Deployment ve Service vardır. Kendi sistemimize göre revize ediyoruz. Deployment'ta bulunan Containers'a Repomuzun bilgilerini veriyoruz.
-Ben Docker Hub'a pushladım.
+The Values.yaml File contains Deployment and Service. We revise it according to our own system. We give the information of our repo to Containers in Deployment.
+I pushed it to Docker Hub.
 
-Namespace oluşturuyoruz.
+We are creating a namespace.
 
-kubectl create ns deneme-hello
+kubectl create ns test-hello
 
-kubectl appyl -f values.yaml --namespace=deneme-hello
+kubectl appyl -f values.yaml --namespace=test-hello
 
 
-Projeye DNS üzerinden ulaşabilmek için nginx-ingress aracılığıyla dışarıya yönlendiriyorum. Şu an http olarak yayınlandı fakat istersek elimizdeki sertifikalar
-ile tls secret oluşturup ingress.yaml'da belirtip https olarak dışarıya açmış oluruz. Elimde DNS adresi olmadığı için Host'a sahte dns veriyorum.
+I specify via nginx-ingress to reach the project via DNS. Currently it is published as http but we have certificates if we want
+ Let's specify this with tls secret in ingress.yaml and open it as https. Since I do not have a DNS address, I give fake dns to the host.
 
-kubectl apply -f ingress.yaml --namespace=deneme-hello
+Apply kubectl -f ingress.yaml --namespace=test-hello
