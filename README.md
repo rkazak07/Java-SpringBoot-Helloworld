@@ -1,6 +1,4 @@
-# Project
-
-#For the Springboot Hello world project;
+# For the Springboot Hello world project;
 
 The tools we need are:
 Docker
