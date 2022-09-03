@@ -17,12 +17,16 @@ I pushed it to Docker Hub.
 
 # We are creating a namespace.
 
+```
 kubectl create ns test-hello
-
+```
+```
 kubectl appyl -f values.yaml --namespace=test-hello
-
+```
 
 I specify via nginx-ingress to reach the project via DNS. Currently it is published as http but we have certificates if we want
  Let's specify this with tls secret in ingress.yaml and open it as https. Since I do not have a DNS address, I give fake dns to the host.
 
+```
 Apply kubectl -f ingress.yaml --namespace=test-hello
+```
